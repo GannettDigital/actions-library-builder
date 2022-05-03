@@ -23,7 +23,7 @@ runs:
         repos = ${{ inputs.repo_list }}
         for i in ${repos//,/ }
         do
-            echo "$i"
+            echo $i
             git clone https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/$i.git .github/actions/$i
         done
 
