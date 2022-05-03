@@ -20,7 +20,7 @@ runs:
     - run: echo Checking out ${{ inputs.repo_owner }}/${{ inputs.repo_name }}@${{ inputs.repo_version }};
       shell: bash
     
-    - run: "git clone https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/${{ inputs.repo_name }}.git"
+    - run: "git clone https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/${{ inputs.repo_name }}.git .github/actions/${{ inputs.repo_name }}"
       shell: bash
       # env:
       #   GITHUB_TOKEN: ${{ inputs.private_action_token }}
