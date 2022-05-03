@@ -1,33 +1,41 @@
 name: build-library
-description: 'Hope this works'
+description: 'An action that will clone multiple private Actions into the runner'
 
 inputs:
   repo_owner:
-    description: The list of repos to check out.
+    description: The Org to pull from.
     required: true
-  repo_name:
-    description: The list of repos to check out.
+  repo_list:
+    description: The list of repos to check out. Must be CSV string because composite actions don't take arrays.
     required: true
   repo_version:    
-    description: The version to check out..
+    description: The version to check out.  ToDo - make version per repo.
     required: true
   private_action_token:
-    description: The PK
+    description: The private token to use.
     required: true
 runs:
   using: composite
   steps:
-    - run: echo Checking out ${{ inputs.repo_owner }}/${{ inputs.repo_name }}@${{ inputs.repo_version }};
+    - run: echo Checking out ${{ inputs.repo_owner }}/${{ inputs.repo_list }}@${{ inputs.repo_version }};
       shell: bash
-    
-    - run: "git clone https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/${{ inputs.repo_name }}.git .github/actions/${{ inputs.repo_name }}"
+    - run: |
+        for i in ${repo_list//,/ }
+        do
+            echo "Cloning $i"
+            git clone https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/$i.git .github/actions/$i
+        done
+
       shell: bash
+
+    # - run: "git clone https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/${{ inputs.repo_list }}.git .github/actions/${{ inputs.repo_list }}"
+    #   shell: bash
       # env:
       #   GITHUB_TOKEN: ${{ inputs.private_action_token }}
 
     # - uses: actions/checkout@v2
     #   with:
-    #     repository: ${{ inputs.repo_owner }}/${{ inputs.repo_name }}
+    #     repository: ${{ inputs.repo_owner }}/${{ inputs.repo_list }}
     #     ref: ${{ inputs.repo_version }}
-    #     path: .github/actions/${{ inputs.repo_name }}
+    #     path: .github/actions/${{ inputs.repo_list }}
     #     token: ${{ inputs.private_action_token }}
