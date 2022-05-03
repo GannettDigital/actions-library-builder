@@ -22,7 +22,7 @@ runs:
     - run: |
         for i in ${repo_list//,/ }
         do
-            echo "Cloning $i"
+            echo "$i"
             git clone https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/$i.git .github/actions/$i
         done
 
@@ -39,3 +39,4 @@ runs:
     #     ref: ${{ inputs.repo_version }}
     #     path: .github/actions/${{ inputs.repo_list }}
     #     token: ${{ inputs.private_action_token }}
+
