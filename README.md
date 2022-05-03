@@ -9,7 +9,7 @@ This action is used to clone multiple private repositories into a runner for use
         uses: GannettDigital/actions-library-builder@main
         with: 
           repo_owner: GannettDigital
-          repo_list: "cloud-engineering-actions,appops-actions"
+          repo_list: "my-repo-A,my-repo-B"
           repo_version: main
           private_action_token: ${{ secrets.PRIVATE_ACTION_TOKEN }}
 ```
