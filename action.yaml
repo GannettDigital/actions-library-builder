@@ -24,8 +24,8 @@ runs:
 
         for i in ${repos//,/ }
         do
-            echo $i
-            #git clone https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/$i.git .github/actions/$i
+            echo Cloning: $i
+            git clone https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/$i.git .github/actions/$i
         done
 
       shell: bash
