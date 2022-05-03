@@ -9,7 +9,7 @@ inputs:
     description: The list of repos to check out. Must be CSV string because composite actions don't take arrays.
     required: true
   repo_version:    
-    description: The version to check out.  ToDo - make version per repo.
+    description: The version to check out.  #ToDo - make version per repo.
     required: true
   private_action_token:
     description: The private token to use.
@@ -29,15 +29,3 @@ runs:
         done
 
       shell: bash
-
-    # - run: "git clone https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/${{ inputs.repo_list }}.git .github/actions/${{ inputs.repo_list }}"
-    #   shell: bash
-      # env:
-      #   GITHUB_TOKEN: ${{ inputs.private_action_token }}
-
-    # - uses: actions/checkout@v2
-    #   with:
-    #     repository: ${{ inputs.repo_owner }}/${{ inputs.repo_list }}
-    #     ref: ${{ inputs.repo_version }}
-    #     path: .github/actions/${{ inputs.repo_list }}
-    #     token: ${{ inputs.private_action_token }}
