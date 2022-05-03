@@ -1,0 +1,25 @@
+name: build-library
+description: 'Hope this works'
+
+inputs:
+  repo_name:
+    description: The list of repos to check out.
+    required: true
+  repo_version:    
+    description: The version to check out..
+    required: true
+  private_action_token:
+    description: The PK
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: echo Checking out ${{ inputs.repo_name }}@${{ inputs.repo_version }};
+      shell: bash
+
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ inputs.repo_name }}
+        ref: ${{ inputs.repo_version }}
+        path: .github/actions/${{ inputs.repo_name }}
+        token: ${{ inputs.private_action_token }}
