@@ -20,7 +20,7 @@ runs:
     - run: echo Checking out ${{ inputs.repo_owner }}/${{ inputs.repo_list }}@${{ inputs.repo_version }};
       shell: bash
     - run: |
-        for i in ${repo_list//,/ }
+        for i in ${${{ inputs.repo_list }}//,/ }
         do
             echo "$i"
             git clone https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/$i.git .github/actions/$i
