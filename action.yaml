@@ -20,10 +20,10 @@ runs:
     - run: echo Checking out ${{ inputs.repo_owner }}/${{ inputs.repo_name }}@${{ inputs.repo_version }};
       shell: bash
     
-    - run: "git clone https://github.com/${{ inputs.repo_owner }}/${{ inputs.repo_name }}"
+    - run: "git clone git+https://${{ inputs.private_action_token }}@github.com/${{ inputs.repo_owner }}/${{ inputs.repo_name }}.git"
       shell: bash
-      env:
-        GITHUB_TOKEN: ${{ inputs.private_action_token }}
+      # env:
+      #   GITHUB_TOKEN: ${{ inputs.private_action_token }}
 
     # - uses: actions/checkout@v2
     #   with:
