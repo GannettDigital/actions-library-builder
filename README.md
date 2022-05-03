@@ -6,9 +6,9 @@ This action is used to clone multiple private repositories into a runner for use
 
 ```
       - name: Build Library
-        uses: GannettDigital/actions-library-builder@main
+        uses: MyORG/actions-library-builder@main
         with: 
-          repo_owner: GannettDigital
+          repo_owner: MyORG
           repo_list: "my-repo-A,my-repo-B"
           repo_version: main
           private_action_token: ${{ secrets.PRIVATE_ACTION_TOKEN }}
